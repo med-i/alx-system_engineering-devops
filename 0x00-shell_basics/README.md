@@ -1,5 +1,6 @@
-`0-current_working_directory` prints current working directory.
-`1-listit` lists the content of the current directory.
-`2-bring_me_home` changes the working directory to the user's home.
-`3-listfiles` displays current directory contents in a long format.
-`4-listmorefiles` displays current directory contents, including hidden files.
+`0-current_working_directory` Prints current working directory.
+`1-listit` Lists the content of the current directory.
+`2-bring_me_home` Changes the working directory to the user's home.
+`3-listfiles` Displays current directory contents in a long format.
+`4-listmorefiles` Displays current directory contents, including hidden files.
+`5-listfilesdigitonly` Display current directory contents with user and group numeric IDs, including hidden files, in long format.

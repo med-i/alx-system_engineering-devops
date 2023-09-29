@@ -1,1 +1,13 @@
 #!/usr/bin/env bash
+# isplays the content of the file /etc/passwd.
+IFS=$'\n'
+lines=$(cat /etc/passwd)
+for line in $lines; do
+	username=$(echo "$line" | cut -d ':' -f1)
+	userid=$(echo ":$line" | cut -d ':' -f2)
+	userhome=$(echo ":$line" | cut -d ':' -f6)
+
+	echo -n "$username:"
+	echo -n "$userid:"
+	echo "/$userhome"
+done

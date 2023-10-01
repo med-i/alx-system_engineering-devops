@@ -11,13 +11,13 @@ case "$1" in
 		echo "manage_my_process started"
 		;;
 	stop)
-		kill $(cat $PID)
+		kill "$(cat $PID)"
 		rm -f $PID
 		echo "manage_my_process stopped"
 		;;
 
 	restart)
-		kill $(cat $PID)
+		kill "$(cat $PID)"
 		rm -f $PID
 		$SCRIPT &
 		echo $! > $PID
@@ -25,7 +25,7 @@ case "$1" in
 		;;
 
 	*)
-		echo "Usage: $0 {start|stop|restart}"
+		echo "Usage: manage_my_process {start|stop|restart}"
 		exit 1
 		;;
 esac

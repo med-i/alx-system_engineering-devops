@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+# configures an Ubuntu server with the below requirements.
+local_ip="127.0.0.2"
+facebook_ip="8.8.8.8"
+cp /etc/hosts ~/hosts.new
+sed -i "s|127\.0\.0\.1|$local_ip|g" ~/hosts.new
+sed -i "s|facebook\.com|$facebook_ip|g" ~/hosts.new
+cp -f ~/hosts.new /etc/hosts

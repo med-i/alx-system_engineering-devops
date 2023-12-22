@@ -6,10 +6,12 @@ package { 'python3':
 # Ensure Pip3 is installed
 package { 'python3-pip':
   ensure => installed,
+  require => Package['python3'],
 }
 
 # Install Flask v2.1.0
-package { 'Flask':
+package { 'flask':
   ensure   => '2.1.0',
   provider => 'pip3',
+  require  => Package['python3-pip'],
 }

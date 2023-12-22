@@ -1,12 +1,6 @@
-# Ensure Python 3 is installed
-package { 'python3':
-  ensure => installed,
-}
-
-# Ensure Pip3 is installed
+# Ensure pip3 is installed
 package { 'python3-pip':
   ensure => installed,
-  require => Package['python3'],
 }
 
 # Install Flask v2.1.0

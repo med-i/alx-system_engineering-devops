@@ -1,6 +1,12 @@
 #!/usr/bin/env bash
 # redirection: 301 Moved Permanently
 
+sudo apt update
+sudo apt install -y nginx
+
+echo "Hello World!" | sudo tee /var/www/html/index.html
+
 NGINX_CONF='/etc/nginx/sites-available/default'
 sudo sed -i '/server_name _;/a location \/redirect_me { return 301 https:\/\/github.com\/med-i; }' $NGINX_CONF
-sudo nginx -s reload
+
+sudo service nginx restart

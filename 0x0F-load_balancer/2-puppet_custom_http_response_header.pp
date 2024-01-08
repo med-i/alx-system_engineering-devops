@@ -5,20 +5,16 @@ package { 'nginx':
 }
 
 file { '/var/www/html/index.html':
-  content => 'Hello, World!',
+  content => 'Hello World!',
 }
 
 file { '/etc/nginx/sites-available/default':
   ensure  => present,
-  content => "
-server {
-    add_header X-Served-By \$hostname;
+  content => "server {
     listen 80 default_server;
     server_name _;
 
-    location /redirect_me {
-      return 301 https://github.com/med-i;
-    }
+    rewrite ^/redirect_me https://www.github.com/med-i permanent;
 
     error_page 404 /404.html;
     location = /404.html {
@@ -26,11 +22,24 @@ server {
       internal;
     }
 
+    add_header X-Served-By $hostname;
+
     location / {
       root /var/www/html;
-      index index.html;
+      index index.html index.htm;
     }
   }",
+}
+
+file { '/etc/nginx/sites-enabled/default':
+  ensure => link,
+  target => '/etc/nginx/sites-available/default',
+}
+
+exec { 'nginx-test':
+  command => 'nginx -t',
+  path    => '/usr/sbin',
+  require => File['/etc/nginx/sites-available/default'],
 }
 
 service { 'nginx':

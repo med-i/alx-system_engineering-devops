@@ -4,10 +4,9 @@
 sudo apt-get update
 sudo apt-get install -y haproxy
 
-CONFIG_FILE="/etc/haproxy/haproxy.cfg"
-SERVER_1="363623-web-01 52.3.243.59:80"
-SERVER_2="363623-web-02 54.237.100.243:80"
+echo "ENABLED=1" | sudo tee -a /etc/default/haproxy > /dev/null
 
+CONFIG_FILE="/etc/haproxy/haproxy.cfg"
 sudo cp $CONFIG_FILE{,.original}
 
 sudo tee -a $CONFIG_FILE > /dev/null <<EOT
@@ -18,9 +17,8 @@ listen airbnb_clone
     balance roundrobin
     option httpclose
     option forwardfor
-    server $SERVER_1 check
-    server $SERVER_2 check
+    server 363623-web-01 52.3.243.59:80 check
+    server 363623-web-02 54.237.100.243:80 check
 EOT
 
-sudo systemctl restart haproxy
-sudo systemctl enable haproxy
+sudo service haproxy restart

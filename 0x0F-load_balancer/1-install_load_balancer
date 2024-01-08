@@ -8,7 +8,7 @@ CONFIG_FILE="/etc/haproxy/haproxy.cfg"
 SERVER_1="363623-web-01 52.3.243.59:80"
 SERVER_2="363623-web-02 54.237.100.243:80"
 
-sudo mv $CONFIG_FILE{,.original}
+sudo cp $CONFIG_FILE{,.original}
 
 sudo tee -a $CONFIG_FILE > /dev/null <<EOT
 

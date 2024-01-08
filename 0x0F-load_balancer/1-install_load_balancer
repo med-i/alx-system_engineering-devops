@@ -16,6 +16,8 @@ listen airbnb_clone
     bind *:80
     mode http
     balance roundrobin
+    option httpclose
+    option forwardfor
     server $SERVER_1 check
     server $SERVER_2 check
 EOT

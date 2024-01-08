@@ -1,1 +1,24 @@
 #!/usr/bin/env bash
+# This script configures HAproxy.
+
+sudo apt-get update
+sudo apt-get install -y haproxy
+
+CONFIG_FILE="/etc/haproxy/haproxy.cfg"
+SERVER_1="363623-web-01 52.3.243.59:80"
+SERVER_2="363623-web-02 54.237.100.243:80"
+
+sudo mv $CONFIG_FILE{,.original}
+
+sudo tee -a $CONFIG_FILE > /dev/null <<EOT
+
+listen airbnb_clone
+    bind *:80
+    mode http
+    balance roundrobin
+    server $SERVER_1 check
+    server $SERVER_2 check
+EOT
+
+sudo systemctl restart haproxy
+sudo systemctl enable haproxy

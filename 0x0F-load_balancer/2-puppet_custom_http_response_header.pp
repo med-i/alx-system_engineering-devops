@@ -1,13 +1,8 @@
 # install Nginx web server using Puppet
 
-exec { 'update server':
-  command  => 'apt-get update',
-  user     => 'root',
-  provider => 'shell',
-}
-
 package { 'nginx':
-  ensure => installed,
+  ensure   => present,
+  provider => 'apt'
 }
 
 file_line { 'add HTTP header':
@@ -22,5 +17,3 @@ service { 'nginx':
   enable  => true,
   require => Package['nginx']
 }
-
-

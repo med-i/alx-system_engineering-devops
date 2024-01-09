@@ -7,14 +7,13 @@ exec { 'update server':
 }
 
 package { 'nginx':
-  ensure   => present,
-  provider => 'apt'
+  ensure => installed,
 }
 
 file_line { 'add HTTP header':
   ensure => 'present',
   path   => '/etc/nginx/sites-available/default',
-  after  => 'listen 80 default_server;',
+  after  => 'listen [::]:80 default_server;',
   line   => 'add_header X-Served-By $hostname;'
 }
 
@@ -23,3 +22,5 @@ service { 'nginx':
   enable  => true,
   require => Package['nginx']
 }
+
+

@@ -34,9 +34,9 @@ defaults
         errorfile 504 /etc/haproxy/errors/504.http
 
 frontend www-https
-    bind *:443 ssl crt /etc/haproxy/certs/www.medij.tech.pem
-    mode http
-    default_backend web-backend
+        bind *:443 ssl crt /etc/haproxy/certs/www.medij.tech.pem
+        mode http
+        default_backend web-backend
 
 backend web-backend
         mode http

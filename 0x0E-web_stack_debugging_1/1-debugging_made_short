@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# 
+# Fix nginx and stops it.
 
 ln -sf /etc/nginx/sites-available/default /etc/nginx/sites-enabled/default
-sudo service nginx stop
+sudo pkill -SIGQUIT nginx

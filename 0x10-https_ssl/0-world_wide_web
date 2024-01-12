@@ -1,0 +1,21 @@
+#!/usr/bin/env bash
+# displays information about subdomains.
+
+get_dns_records() {
+    local domain subdomain ip
+    domain=$1
+    subdomain=$2
+    ip=$(dig +short "$subdomain"."$domain")
+
+    echo "The subdomain $subdomain is a A record and points to $ip"
+}
+
+if [ "$#" -eq 1 ]; then
+    for subdomain in "www" "lb-01" "web-01" "web-02"; do
+        get_dns_records "$1" "$subdomain"
+    done
+elif [ "$#" -eq 2 ]; then
+    get_dns_records "$1" "$2"
+else
+    echo "Usage: $0 domain [subdomain]"
+fi

@@ -2,4 +2,5 @@
 # Fix nginx and stops it.
 
 ln -sf /etc/nginx/sites-available/default /etc/nginx/sites-enabled/default
+sudo service nginx restart
 sudo pkill -SIGQUIT nginx

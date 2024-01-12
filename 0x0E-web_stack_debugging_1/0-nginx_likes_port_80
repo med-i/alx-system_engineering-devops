@@ -1,1 +1,7 @@
 #!/usr/bin/env bash
+# Fix nginx listening on port 80
+
+sudo fuser -k 80/tcp
+sudo fuser -k 80/udp
+sudo systemctl start nginx
+sudo systemctl enable nginx

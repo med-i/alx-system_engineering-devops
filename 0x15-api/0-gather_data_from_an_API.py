@@ -3,7 +3,7 @@
 This module gather data from an API
 """
 
-import sys
+from sys import argv
 import requests
 
 
@@ -32,5 +32,5 @@ def get_employee_todos(id):
 
 
 if __name__ == "__main__":
-    if len(sys.argv) == 2:
-        get_employee_todos(sys.argv[1])
+    if len(argv) >= 2:
+        get_employee_todos(argv[1])

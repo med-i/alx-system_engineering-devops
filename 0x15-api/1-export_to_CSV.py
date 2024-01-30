@@ -17,14 +17,14 @@ def export_todos_to_csv(id):
     user = requests.get(user_url).json()
     todos = requests.get(todos_url).json()
 
-    user_name = user["name"]
-    file_name = f"{id}.csv"
+    username = user["username"]
+    filename = f"{id}.csv"
 
-    with open(file_name, mode="w", newline="") as file:
+    with open(filename, mode="w", newline="") as file:
         writer = csv.writer(file, quoting=csv.QUOTE_ALL)
         for task in todos:
             writer.writerow(
-                [id, user_name, task.get("completed"), task.get("title")]
+                [id, username, task.get("completed"), task.get("title")]
             )
 
 

@@ -28,7 +28,7 @@ def get_employee_todos(id):
     )
 
     for task in completed:
-        print(f"\t{task}")
+        print(f"\t {task}")
 
 
 if __name__ == "__main__":

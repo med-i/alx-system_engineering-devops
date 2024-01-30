@@ -3,8 +3,8 @@
 This module gather data from an API
 """
 
-from sys import argv
 import requests
+from sys import argv
 
 
 def get_employee_todos(id):

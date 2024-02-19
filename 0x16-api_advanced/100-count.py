@@ -12,7 +12,8 @@ def count_words(subreddit, word_list, after="", word_counts=None):
     if word_counts is None:
         word_counts = {word.lower(): 0 for word in word_list}
 
-    url = f"https://www.reddit.com/r/{subreddit}/hot.json?limit=100&after={after}"
+    url = f"""
+    https://www.reddit.com/r/{subreddit}/hot.json?limit=100&after={after}"""
     headers = {"User-Agent": "linux:alx:v1.0.0 (by /u/I-Med)"}
 
     response = requests.get(url, headers=headers, allow_redirects=False)

@@ -14,16 +14,8 @@ def number_of_subscribers(subreddit):
         "User-Agent": "python:subreddit.subscriber.counter:v1.0 (by /u/med-i)"
     }
 
-    try:
-        response = requests.get(
-            api_url, headers=headers, allow_redirects=False
-        )
-
-        if response.status_code == 200:
-            data = response.json()
-            return data["data"]["subscribers"]
-        else:
-            return 0
-    except Exception as e:
-        print(f"An error occurred: {e}")
-        return 0
+    response = requests.get(api_url, headers=headers, allow_redirects=False)
+    if response.status_code == 200:
+        data = response.json().get("data")
+        return data.get("subscribers")
+    return 0
